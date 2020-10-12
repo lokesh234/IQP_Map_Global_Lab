@@ -22,7 +22,7 @@ const colnames = [
     },
     {
         title: 'Link', field: 'Link',
-        render: rowData => <a href={rowData.Link} target="_blank">{rowData.Link}</a>,
+        render: rowData => <a href={rowData.Link} target="_blank">Link</a>,
     }
 ]
 
