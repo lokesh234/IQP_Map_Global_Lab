@@ -17,7 +17,7 @@ import {Button} from "@material-ui/core";
 import {ExportToCsv} from 'export-to-csv';
 import Box from "@material-ui/core/Box";
 import WPI from './imgs/WPI_Inst.png';
-import text from './imgs/text.png';
+import text from './imgs/txt.png';
 delete L.Icon.Default.prototype._getIconUrl;
 
 L.Icon.Default.mergeOptions({
