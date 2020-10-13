@@ -18,6 +18,14 @@
   padding: 0;
   z-index: 4000;
 }
+
+.Header{
+  position: absolute;
+  margin-top: 5px;
+  margin-left: 100px;
+  z-index: 4000;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

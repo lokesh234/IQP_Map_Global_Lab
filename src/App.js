@@ -196,6 +196,9 @@ export default class App extends Component {
     render() {
         return (
             <div>
+                <div className="Header">
+                    <img src={text} alt="WIN"/>
+                </div>
                 <div className="WPILogo">
                     <img src={WPI} alt="WPI"/>
                 </div>
