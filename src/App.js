@@ -91,7 +91,7 @@ export default class App extends Component {
                 collapsed: true,
                 selected: id,
             })
-            window.open('http://github.com', '_blank')
+            window.open('https://global-lab.github.io/SubjectTerms/', '_blank')
         }
         else {
             this.setState({
