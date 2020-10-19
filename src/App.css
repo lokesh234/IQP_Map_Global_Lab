@@ -16,14 +16,14 @@
   margin-top: 84vh;
   position: absolute;
   padding: 0;
-  z-index: 4000;
+  z-index: 1999;
 }
 
 .Header{
   position: absolute;
   margin-top: 5px;
   margin-left: 100px;
-  z-index: 4000;
+  z-index: 1999;
 }
 
 .App-header {

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Map, Marker, TileLayer, Popup} from "react-leaflet";
 import 'leaflet/dist/leaflet.css'
 import {Sidebar, Tab} from 'react-leaflet-sidetabs'
-import {FaMapMarkedAlt} from "react-icons/fa";
+import {FaMapMarkedAlt, FaExternalLinkAlt} from "react-icons/fa";
 import {FiHome, FiChevronRight, FiSearch, FiSettings} from "react-icons/fi";
 import L from 'leaflet';
 import IQPTable from "./Components/IQPTable";
@@ -86,10 +86,19 @@ export default class App extends Component {
     }
 
     onOpen(id) {
-        this.setState({
-            collapsed: false,
-            selected: id,
-        })
+        if (id === "Externallink") {
+            this.setState({
+                collapsed: true,
+                selected: id,
+            })
+            window.open('http://github.com', '_blank')
+        }
+        else {
+            this.setState({
+                collapsed: false,
+                selected: id,
+            })
+        }
     }
 
     handleClick = (country) => (e) => {
@@ -190,6 +199,11 @@ export default class App extends Component {
         let term = e.target.value
         isChecked ? subterms.push(term) : subterms = subterms.filter(e => e !== term)
         this.filterfunction();
+    }
+
+    handleExternalClick = () => {
+        console.log("Hello")
+        window.location.assign('http://github.com');
     }
 
 
@@ -841,6 +855,7 @@ export default class App extends Component {
                             Clear
                         </Button>
                     </Tab>
+                     <Tab id="Externallink" icon={<FaExternalLinkAlt/>} />
                 </Sidebar>
                 <Map style={{height: "100vh", width: "100%"}} className="mapStyle" center={[0, 0]} zoom={3}>
                     <TileLayer
