@@ -17,7 +17,9 @@ import {Button} from "@material-ui/core";
 import {ExportToCsv} from 'export-to-csv';
 import Box from "@material-ui/core/Box";
 import WPI from './imgs/WPI_Inst.png';
+import WPISmall from './imgs/WPI_Small.png';
 import text from './imgs/txt.png';
+import CheckBoxJSON from "./files/checkbox";
 delete L.Icon.Default.prototype._getIconUrl;
 
 L.Icon.Default.mergeOptions({
@@ -71,6 +73,7 @@ const options = {
 
 const csvExporter = new ExportToCsv(options);
 
+console.log(CheckBoxJSON);
 
 export default class App extends Component {
     constructor(props) {
@@ -78,6 +81,7 @@ export default class App extends Component {
         this.state = {
             collapsed: true,
             selected: 'home',
+            checkedBox: true,
         };
     }
 
@@ -123,6 +127,9 @@ export default class App extends Component {
                     CenterInfo.push(Center);
                 }
             });
+        })
+        CheckBoxJSON.map(function (checkbox) {
+            checkbox.Box = false;
         })
         this.onOpen("settings");
     }
@@ -188,6 +195,7 @@ export default class App extends Component {
                 }
             }
         });
+
         this.onOpen("settings");
     }
 
@@ -197,14 +205,29 @@ export default class App extends Component {
 
     handleCheckbox = (e, isChecked) => {
         let term = e.target.value
+        CheckBoxJSON.map(function (d) {
+            if ( d.Name === term) {
+                d.Box = true;
+            }
+        });
         isChecked ? subterms.push(term) : subterms = subterms.filter(e => e !== term)
         this.filterfunction();
     }
 
     handleExternalClick = () => {
-        console.log("Hello")
-        window.location.assign('http://github.com');
+        window.location.assign('https://global-lab.github.io/ProjectCenters/');
     }
+
+    findBool = (name) => {
+        let bol = false;
+        CheckBoxJSON.forEach(function (d) {
+            if (d.Name === name) {
+                bol = d.Box;
+            }
+        });
+        return bol;
+    }
+
 
 
     render() {
@@ -215,6 +238,9 @@ export default class App extends Component {
                 </div>
                 <div className="WPILogo">
                     <img src={WPI} alt="WPI"/>
+                </div>
+                <div className="WPISmall">
+                    <img src={WPISmall} alt="WPI"/>
                 </div>
                 <Sidebar
                     id="sidebar"
@@ -291,6 +317,7 @@ export default class App extends Component {
                                                 name="checkedB"
                                                 color="primary"
                                                 value="Accessibility"
+                                                checked={this.findBool("Accessibility")}
                                                 onChange={this.handleCheckbox}
                                             />
                                         }
@@ -304,6 +331,7 @@ export default class App extends Component {
                                                 name="checkedB"
                                                 color="primary"
                                                 value="Animals"
+                                                checked={this.findBool("Animals")}
                                                 onChange={this.handleCheckbox}
                                             />
                                         }
@@ -317,6 +345,7 @@ export default class App extends Component {
                                                 name="checkedB"
                                                 color="primary"
                                                 value="Biomedical"
+                                                checked={this.findBool("Biomedical")}
                                                 onChange={this.handleCheckbox}
                                             />
                                         }
@@ -330,6 +359,7 @@ export default class App extends Component {
                                                 name="checkedB"
                                                 color="primary"
                                                 value="Business and Economics"
+                                                checked={this.findBool("Business and Economics")}
                                                 onChange={this.handleCheckbox}
                                             />
                                         }
@@ -343,6 +373,7 @@ export default class App extends Component {
                                                 name="checkedB"
                                                 color="primary"
                                                 value="Children"
+                                                checked={this.findBool("Children")}
                                                 onChange={this.handleCheckbox}
                                             />
                                         }
@@ -356,6 +387,7 @@ export default class App extends Component {
                                                 name="checkedB"
                                                 color="primary"
                                                 value="Climate Change"
+                                                checked={this.findBool("Climate Change")}
                                                 onChange={this.handleCheckbox}
                                             />
                                         }
@@ -369,6 +401,7 @@ export default class App extends Component {
                                                 name="checkedB"
                                                 color="primary"
                                                 value="Community Engagement"
+                                                checked={this.findBool("Community Engagement")}
                                                 onChange={this.handleCheckbox}
                                             />
                                         }
@@ -384,6 +417,7 @@ export default class App extends Component {
                                                 name="checkedB"
                                                 color="primary"
                                                 value="Computing"
+                                                checked={this.findBool("Computing")}
                                                 onChange={this.handleCheckbox}
                                             />
                                         }
@@ -397,6 +431,7 @@ export default class App extends Component {
                                                 name="checkedB"
                                                 color="primary"
                                                 value="Culture and Language"
+                                                checked={this.findBool("Culture and Language")}
                                                 onChange={this.handleCheckbox}
                                             />
                                         }
@@ -410,6 +445,7 @@ export default class App extends Component {
                                                 name="checkedB"
                                                 color="primary"
                                                 value="Education"
+                                                checked={this.findBool("Education")}
                                                 onChange={this.handleCheckbox}
                                             />
                                         }
@@ -423,6 +459,7 @@ export default class App extends Component {
                                                 name="checkedB"
                                                 color="primary"
                                                 value="Emerging Technologies"
+                                                checked={this.findBool("Emerging Technologies")}
                                                 onChange={this.handleCheckbox}
                                             />
                                         }
@@ -437,6 +474,7 @@ export default class App extends Component {
                                                 name="checkedB"
                                                 color="primary"
                                                 value="Energy"
+                                                checked={this.findBool("Energy")}
                                                 onChange={this.handleCheckbox}
                                             />
                                         }
@@ -450,6 +488,7 @@ export default class App extends Component {
                                                 name="checkedB"
                                                 color="primary"
                                                 value="Environmental Management"
+                                                checked={this.findBool("Environmental Management")}
                                                 onChange={this.handleCheckbox}
                                             />
                                         }
@@ -463,6 +502,7 @@ export default class App extends Component {
                                                 name="checkedB"
                                                 color="primary"
                                                 value="Food"
+                                                checked={this.findBool("Food")}
                                                 onChange={this.handleCheckbox}
                                             />
                                         }
@@ -478,6 +518,7 @@ export default class App extends Component {
                                                 name="checkedB"
                                                 color="primary"
                                                 value="Health and Wellbeing"
+                                                checked={this.findBool("Health and Wellbeing")}
                                                 onChange={this.handleCheckbox}
                                             />
                                         }
@@ -491,6 +532,7 @@ export default class App extends Component {
                                                 name="checkedB"
                                                 color="primary"
                                                 value="History"
+                                                checked={this.findBool("History")}
                                                 onChange={this.handleCheckbox}
                                             />
                                         }
@@ -504,6 +546,7 @@ export default class App extends Component {
                                                 name="checkedB"
                                                 color="primary"
                                                 value="Industry and Manufacturing"
+                                                checked={this.findBool("Industry and Manufacturing")}
                                                 onChange={this.handleCheckbox}
                                             />
                                         }
@@ -517,6 +560,7 @@ export default class App extends Component {
                                                 name="checkedB"
                                                 color="primary"
                                                 value="Infrastructure/Buildings"
+                                                checked={this.findBool("Infrastructure/Buildings")}
                                                 onChange={this.handleCheckbox}
                                             />
                                         }
@@ -530,6 +574,7 @@ export default class App extends Component {
                                                 name="checkedB"
                                                 color="primary"
                                                 value="Innovation and Entrepreneurship"
+                                                checked={this.findBool("Innovation and Entrepreneurship")}
                                                 onChange={this.handleCheckbox}
                                             />
                                         }
@@ -543,6 +588,7 @@ export default class App extends Component {
                                                 name="checkedB"
                                                 color="primary"
                                                 value="Interactive Media"
+                                                checked={this.findBool("Interactive Media")}
                                                 onChange={this.handleCheckbox}
                                             />
                                         }
@@ -558,6 +604,7 @@ export default class App extends Component {
                                                 name="checkedB"
                                                 color="primary"
                                                 value="International Relations"
+                                                checked={this.findBool("International Relations")}
                                                 onChange={this.handleCheckbox}
                                             />
                                         }
@@ -571,6 +618,7 @@ export default class App extends Component {
                                                 name="checkedB"
                                                 color="primary"
                                                 value="Libraries and Archives"
+                                                checked={this.findBool("Libraries and Archives")}
                                                 onChange={this.handleCheckbox}
                                             />
                                         }
@@ -585,6 +633,7 @@ export default class App extends Component {
                                                 name="checkedB"
                                                 color="primary"
                                                 value="Materials"
+                                                checked={this.findBool("Materials")}
                                                 onChange={this.handleCheckbox}
                                             />
                                         }
@@ -598,6 +647,7 @@ export default class App extends Component {
                                                 name="checkedB"
                                                 color="primary"
                                                 value="Museum"
+                                                checked={this.findBool("Museum")}
                                                 onChange={this.handleCheckbox}
                                             />
                                         }
@@ -611,6 +661,7 @@ export default class App extends Component {
                                                 name="checkedB"
                                                 color="primary"
                                                 value="Natural Resources"
+                                                checked={this.findBool("Natural Resources")}
                                                 onChange={this.handleCheckbox}
                                             />
                                         }
@@ -624,6 +675,7 @@ export default class App extends Component {
                                                 name="checkedB"
                                                 color="primary"
                                                 value="Organizational Management"
+                                                checked={this.findBool("Organizational Management")}
                                                 onChange={this.handleCheckbox}
                                             />
                                         }
@@ -637,6 +689,7 @@ export default class App extends Component {
                                                 name="checkedB"
                                                 color="primary"
                                                 value="Policy"
+                                                checked={this.findBool("Policy")}
                                                 onChange={this.handleCheckbox}
                                             />
                                         }
@@ -652,6 +705,7 @@ export default class App extends Component {
                                                 name="checkedB"
                                                 color="primary"
                                                 value="Politics"
+                                                checked={this.findBool("Politics")}
                                                 onChange={this.handleCheckbox}
                                             />
                                         }
@@ -665,6 +719,7 @@ export default class App extends Component {
                                                 name="checkedB"
                                                 color="primary"
                                                 value="Public Engagement"
+                                                checked={this.findBool("Public Engagement")}
                                                 onChange={this.handleCheckbox}
                                             />
                                         }
@@ -678,6 +733,7 @@ export default class App extends Component {
                                                 name="checkedB"
                                                 color="primary"
                                                 value="Public Services"
+                                                checked={this.findBool("Public Services")}
                                                 onChange={this.handleCheckbox}
                                             />
                                         }
@@ -691,6 +747,7 @@ export default class App extends Component {
                                                 name="checkedB"
                                                 color="primary"
                                                 value="Recreation"
+                                                checked={this.findBool("Recreation")}
                                                 onChange={this.handleCheckbox}
                                             />
                                         }
@@ -704,6 +761,7 @@ export default class App extends Component {
                                                 name="checkedB"
                                                 color="primary"
                                                 value="Rural Development"
+                                                checked={this.findBool("Rural Development")}
                                                 onChange={this.handleCheckbox}
                                             />
                                         }
@@ -717,6 +775,7 @@ export default class App extends Component {
                                                 name="checkedB"
                                                 color="primary"
                                                 value="Security"
+                                                checked={this.findBool("Security")}
                                                 onChange={this.handleCheckbox}
                                             />
                                         }
@@ -730,6 +789,7 @@ export default class App extends Component {
                                                 name="checkedB"
                                                 color="primary"
                                                 value="Social Justice"
+                                                checked={this.findBool("Social Justice")}
                                                 onChange={this.handleCheckbox}
                                             />
                                         }
@@ -745,6 +805,7 @@ export default class App extends Component {
                                                 name="checkedB"
                                                 color="primary"
                                                 value="Space"
+                                                checked={this.findBool("Space")}
                                                 onChange={this.handleCheckbox}
                                             />
                                         }
@@ -758,6 +819,7 @@ export default class App extends Component {
                                                 name="checkedB"
                                                 color="primary"
                                                 value="Sustainable Development"
+                                                checked={this.findBool("Sustainable Development")}
                                                 onChange={this.handleCheckbox}
                                             />
                                         }
@@ -771,6 +833,7 @@ export default class App extends Component {
                                                 name="checkedB"
                                                 color="primary"
                                                 value="Tourism"
+                                                checked={this.findBool("Techniques")}
                                                 onChange={this.handleCheckbox}
                                             />
                                         }
@@ -784,6 +847,7 @@ export default class App extends Component {
                                                 name="checkedB"
                                                 color="primary"
                                                 value="Tourism"
+                                                checked={this.findBool("Tourism")}
                                                 onChange={this.handleCheckbox}
                                             />
                                         }
@@ -797,6 +861,7 @@ export default class App extends Component {
                                                 name="checkedB"
                                                 color="primary"
                                                 value="Transportation"
+                                                checked={this.findBool("Transportation")}
                                                 onChange={this.handleCheckbox}
                                             />
                                         }
@@ -810,6 +875,7 @@ export default class App extends Component {
                                                 name="checkedB"
                                                 color="primary"
                                                 value="Urban Plannings"
+                                                checked={this.findBool("Urban Plannings")}
                                                 onChange={this.handleCheckbox}
                                             />
                                         }
@@ -823,6 +889,7 @@ export default class App extends Component {
                                                 name="checkedB"
                                                 color="primary"
                                                 value="Water"
+                                                checked={this.findBool("Water")}
                                                 onChange={this.handleCheckbox}
                                             />
                                         }
@@ -836,6 +903,7 @@ export default class App extends Component {
                                                 name="checkedB"
                                                 color="primary"
                                                 value="Women"
+                                                checked={this.findBool("Women")}
                                                 onChange={this.handleCheckbox}
                                             />
                                         }

@@ -19,6 +19,15 @@
   z-index: 1999;
 }
 
+.WPISmall {
+  margin-top: 84vh;
+  position: absolute;
+  padding: 0;
+  z-index: 1999;
+  display: none;
+}
+
+
 .Header{
   position: absolute;
   margin-top: 5px;
@@ -48,4 +57,10 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+@media only screen and (max-width: 600px) {
+  .Header { display: none}
+  .WPILogo { display: none }
+  .WPISmall { display: block}
 }
